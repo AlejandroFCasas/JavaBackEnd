@@ -38,7 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.password("admin")
 			.roles("USER", "ADMIN");*/
 		
-		auth.userDetailsService(userDetailsService).passwordEncoder(bcrypt);
+		auth.userDetailsService(userDetailsService);
+		//auth.userDetailsService(userDetailsService).passwordEncoder(bcrypt);
 	}
 	
 	@Override
