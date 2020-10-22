@@ -1,4 +1,4 @@
-package com.mitocode.rest;
+package com.stacktrace.rest;
 
 import java.util.List;
 
@@ -12,33 +12,34 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mitocode.model.Persona;
-import com.mitocode.repo.IPersonaRepo;
+
+import com.stacktrace.model.Profesor;
+import com.stacktrace.repo.IProfesor;
 
 @RestController
-@RequestMapping("/personas")
-public class RestDemoController {
+@RequestMapping("/Profesores")
+public class RestDemoController2 {
 
 	@Autowired
-	private IPersonaRepo repo; 
+	private IProfesor repo; 
 	
 	@GetMapping
-	public List<Persona> listar(){
+	public List<Profesor> listar(){
 		return repo.findAll();
 	}
 	
 	@PostMapping
-	public void insertar (@RequestBody Persona per){
+	public void insertar (@RequestBody Profesor per){
 		repo.save(per);
 	}
 	
 	@PutMapping
-	public void modificar (@RequestBody Persona per){
+	public void modificar (@RequestBody Profesor per){
 		repo.save(per);
 	}
 	
-	@DeleteMapping(value = "/{id}")
-	public void eliminar (@PathVariable("id") Integer id){
+	@DeleteMapping(value = "/{nro_documento}")
+	public void eliminar (@PathVariable("nro_documento") Integer id){
 		repo.deleteById(id);
 	}
 	

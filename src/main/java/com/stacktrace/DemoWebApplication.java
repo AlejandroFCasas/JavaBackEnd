@@ -1,4 +1,4 @@
-package com.mitocode;
+package com.stacktrace;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
