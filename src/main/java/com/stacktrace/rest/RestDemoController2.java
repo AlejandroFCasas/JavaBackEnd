@@ -27,6 +27,7 @@ public class RestDemoController2 {
 	public List<Profesor> listar(){
 		return repo.findAll();
 	}
+
 	
 	@PostMapping
 	public void insertar (@RequestBody Profesor per){

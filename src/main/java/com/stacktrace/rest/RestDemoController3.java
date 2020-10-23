@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stacktrace.model.Alumno;
 import com.stacktrace.model.Curso;
+import com.stacktrace.model.Profesor;
 import com.stacktrace.repo.IAlumno;
 import com.stacktrace.repo.ICurso;
 
@@ -28,6 +29,13 @@ public class RestDemoController3 {
 	public List<Curso> listar(){
 		return repo.findAll();
 	}
+	
+	@GetMapping("/{nombreCurso}")
+	public void BuscarBynombre(@PathVariable("/nombreCurso") String nombre){
+	
+			repo.findByNombre(nombre);
+		}
+		
 	
 	@PostMapping
 	public void insertar (@RequestBody Curso per){

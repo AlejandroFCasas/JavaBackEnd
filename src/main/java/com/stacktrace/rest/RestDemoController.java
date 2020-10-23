@@ -22,11 +22,7 @@ public class RestDemoController {
 	@Autowired
 	private IAlumno repo; 
 	
-	@GetMapping
-	public List<Alumno> listar(){
-		return repo.findAll();
-	}
-	
+
 	@PostMapping
 	public void insertar (@RequestBody Alumno per){
 		repo.save(per);

@@ -52,7 +52,7 @@ public class Alumno {
 			String apellido,String fechaNacimiento, String domicilioActual,
 			String sexo,int telefono){
 
-		this.nroDocumento = 13;
+		this.nroDocumento = nroDocumento;
 		this.tipoDeDocumento = tipoDeDocumento;
 		this.nombre = nombre;
 		this.apellido = apellido;
