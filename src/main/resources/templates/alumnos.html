@@ -26,16 +26,16 @@
                 </tr>    
             </thead>
             <tbody>
-                <tr th:each ="profesor:${profesores}">
-                    <td th:text=${profesor.nroDocumento}>${profesor.nroDocumento}</td> 
-                    <td th:text=${profesor.tipoDeDocumento}>${profesor.tipoDeDocumento}</td>
-                    <td th:text=${profesor.nombre}>${profesor.nombre}</td> 
-                    <td th:text=${profesor.apellido}>${profesor.apellido}</td>
-                    <td th:text=${profesor.fechaNacimiento}>${profesor.fechaNacimiento}</td> 
-                    <td th:text=${profesor.domicilioActual}>${profesor.domicilioActual}</td>
-                    <td th:text=${profesor.sexo}>${profesor.sexo}</td> 
-                    <td th:text=${profesor.telefono}>${profesor.telefono}</td>
-                    <td th:text=${profesor.cursosInscriptos}>${profesor.cursosInscriptos}</td>
+                <tr th:each ="alumno:${alumnos}"><!-- puede que sea "alumno"-->
+                    <td th:text=${alumno.nroDocumento}>${alumno.nroDocumento}</td> 
+                    <td th:text=${alumno.tipoDeDocumento}>${alumno.tipoDeDocumento}</td>
+                    <td th:text=${alumno.nombre}>${alumno.nombre}</td> 
+                    <td th:text=${alumno.apellido}>${alumno.apellido}</td>
+                    <td th:text=${alumno.fechaNacimiento}>${alumno.fechaNacimiento}</td> 
+                    <td th:text=${alumno.domicilioActual}>${alumno.domicilioActual}</td>
+                    <td th:text=${alumno.sexo}>${alumno.sexo}</td> 
+                    <td th:text=${alumno.telefono}>${alumno.telefono}</td>
+                    <td th:text=${alumno.cursosInscriptos}>${alumno.cursosInscriptos}</td>
                     <td><button type="button" class="btn btn-warning">Editar</button></td>
                     <td><button type="button" class="btn btn-danger">Borrar</button></td> 
                 </tr>

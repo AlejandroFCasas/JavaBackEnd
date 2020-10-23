@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.stacktrace.interfaceService.IAlumnoService;
+import com.stacktrace.interfaceService.IProfesorService;
 import com.stacktrace.model.Alumno;
 import com.stacktrace.model.Curso;
 import com.stacktrace.model.Profesor;
@@ -23,22 +24,29 @@ public class DemoController {
 	
 	//inyeccion a la parte del DAO
 	@Autowired
-	private IAlumnoService service; 
+	private IAlumnoService serviceAlumno; 
 	
 	@Autowired
-	private IProfesor repoprofe; 
+	private IProfesorService serviceProfesor; 
 	
 	@Autowired
 	private ICurso repocurso; 
 	
-	@GetMapping("/listar") 
+	@GetMapping("/listarAlumnos") 
+	public String listarAlumnos(Model model) {
+		//logica
+		List<Alumno>alumnos=serviceAlumno.listar();
+		model.addAttribute("profesores", alumnos);
+		
+		return "index";
+	}
+	@GetMapping("/listarProfesores") 
 	public String listar(Model model) {
 		//logica
-		List<Alumno>alumnos=service.listar();
-		model.addAttribute("alumnos", alumnos);
+		List<Profesor>profesor=serviceProfesor.listar();
+		model.addAttribute("profesores", profesor);
 		
 		return "index";
 	}
 	
-
 }

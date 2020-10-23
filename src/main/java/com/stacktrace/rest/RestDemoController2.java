@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.stacktrace.model.Profesor;
 import com.stacktrace.repo.IProfesor;
 
@@ -23,12 +22,7 @@ public class RestDemoController2 {
 	@Autowired
 	private IProfesor repo; 
 	
-	@GetMapping
-	public List<Profesor> listar(){
-		return repo.findAll();
-	}
 
-	
 	@PostMapping
 	public void insertar (@RequestBody Profesor per){
 		repo.save(per);
