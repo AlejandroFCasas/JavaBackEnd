@@ -1,5 +1,4 @@
 package com.stacktrace.interfaceService;
-
 import java.util.List;
 import java.util.Optional;
 import com.stacktrace.model.Profesor;

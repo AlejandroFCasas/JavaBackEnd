@@ -10,38 +10,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
 </head>
 <body>
- <div class="container mt-4">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Tpo de Documento</th>
-                    <th>Número de Documento</th>
-                    <th>Nombre</th>
-                    <th>Apellido</th>
-                    <th>Fecha Nacimiento</th>
-                    <th>Domicilio Actual</th>
-                    <th>Sexo</th>
-                    <th>Telefono</th>
-                    <th>Cursos</th>
-                </tr>    
-            </thead>
-            <tbody>
-                <tr th:each ="profesor:${profesores}">
-                    <td th:text=${profesor.nroDocumento}>${profesor.nroDocumento}</td> 
-                    <td th:text=${profesor.tipoDeDocumento}>${profesor.tipoDeDocumento}</td>
-                    <td th:text=${profesor.nombre}>${profesor.nombre}</td> 
-                    <td th:text=${profesor.apellido}>${profesor.apellido}</td>
-                    <td th:text=${profesor.fechaNacimiento}>${profesor.fechaNacimiento}</td> 
-                    <td th:text=${profesor.domicilioActual}>${profesor.domicilioActual}</td>
-                    <td th:text=${profesor.sexo}>${profesor.sexo}</td> 
-                    <td th:text=${profesor.telefono}>${profesor.telefono}</td>
-                    <td th:text=${profesor.cursosInscriptos}>${profesor.cursosInscriptos}</td>
-                    <td><button type="button" class="btn btn-warning">Editar</button></td>
-                    <td><button type="button" class="btn btn-danger">Borrar</button></td> 
-                </tr>
-            </tbody>
-        </table>
-    </div>
+
+
+<center>
+<a href="listarAlumnos" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Alumnos</a> <br> <br>
+
+
+<a href="listarProfesores" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Profesores</a><br> <br>
+
+
+<a href="listarCursos" class="btn btn-primary btn-lg" role="button" aria-pressed="true">Cursos</a> <br> <br>
+
+</center>
+
 
 </body>
 </html>

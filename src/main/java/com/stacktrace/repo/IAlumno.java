@@ -6,7 +6,6 @@ import com.stacktrace.model.Alumno;
 
 
 @Repository
-//public interface IAlumno extends JpaRepository<Alumno, Integer>{ 
 public interface IAlumno extends CrudRepository <Alumno, Integer>{ 
 
 }

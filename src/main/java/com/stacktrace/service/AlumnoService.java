@@ -34,19 +34,22 @@ public class AlumnoService implements IAlumnoService{
 
 	@Override
 	public Optional<Alumno> listarId(int nroDocumento) {
-		// TODO Auto-generated method stub
-		return null;
+		return data.findById(nroDocumento);
 	}
 
 	@Override
 	public int save(Alumno A) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res=0;
+		Alumno alumno=data.save(A);
+		if (!alumno.equals(null)) {
+			res=1;
+		}
+		return res;
 	}
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		data.deleteById(id);
 		
 	}
 }

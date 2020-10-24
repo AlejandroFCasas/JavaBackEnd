@@ -17,26 +17,18 @@ import com.stacktrace.model.Curso;
 import com.stacktrace.model.Profesor;
 import com.stacktrace.repo.IAlumno;
 import com.stacktrace.repo.ICurso;
+import com.stacktrace.repo.IProfesor;
 
 @RestController
 @RequestMapping("/Cursos")
 public class RestDemoController3 {
+	
+
 
 	@Autowired
 	private ICurso repo; 
 	
-	@GetMapping
-	public List<Curso> listar(){
-		return repo.findAll();
-	}
-	
-	@GetMapping("/{nombreCurso}")
-	public void BuscarBynombre(@PathVariable("/nombreCurso") String nombre){
-	
-			repo.findByNombre(nombre);
-		}
-		
-	
+
 	@PostMapping
 	public void insertar (@RequestBody Curso per){
 		repo.save(per);
@@ -51,6 +43,5 @@ public class RestDemoController3 {
 	public void eliminar (@PathVariable("nro_documento") Integer id){
 		repo.deleteById(id);
 	}
-	
 	
 }

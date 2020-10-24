@@ -30,25 +30,29 @@ public class ProfesorService implements IProfesorService{
 
 	@Override
 	public List<Profesor> listar() {
-		
 		return  (List<Profesor>)data.findAll();
 	}
 
 	@Override
 	public Optional<Profesor> listarId(int nroDocumento) {
 		// TODO Auto-generated method stub
-		return null;
+		return data.findById(nroDocumento);
 	}
 
 	@Override
 	public int save(Profesor A) {
-		// TODO Auto-generated method stub
-		return 0;
+		int res=0;
+		Profesor profesor=data.save(A);
+		if (!profesor.equals(null)) {
+			res=1;
+		}
+		return res;
 	}
+	
 
 	@Override
 	public void delete(int id) {
-		// TODO Auto-generated method stub
+		data.deleteById(id);
 		
 	}
 
