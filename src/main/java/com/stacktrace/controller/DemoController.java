@@ -24,7 +24,7 @@ import com.stacktrace.model.Profesor;
 @RequestMapping
 public class DemoController {
 
-	
+
 	//inyeccion a la parte del DAO
 	@Autowired
 	private IAlumnoService serviceAlumno; 
@@ -36,6 +36,8 @@ public class DemoController {
 	@Autowired
 	private ICursoService serviceCurso; 
 	
+
+	
 	
 	@GetMapping("/listarAlumnos") 
 	public String listarAlumnos(Model model) {
@@ -44,11 +46,16 @@ public class DemoController {
 		return "alumnos";
 	}
 	
+	
 	@GetMapping("/newAlumno")
 	public String agregarAlumno(Model model) {
 		model.addAttribute("alumno", new Alumno());
+		List<Curso>curso=serviceCurso.listar();
+		model.addAttribute("cursos", curso);
 		return "formAlumno";
 	}
+	
+	
 	@PostMapping("/saveAlumno")
 	public String save ( Alumno a, Model model) {
 		serviceAlumno.save(a);
@@ -62,12 +69,36 @@ public class DemoController {
 		return "formAlumno";
 	}
 	
+	
+	
+	
 	@GetMapping("/eliminarAlumno/{nroDocumento}")
 	public String deleteAlumno (Model model, @PathVariable int nroDocumento) {
 		serviceAlumno.delete(nroDocumento);
 		return "redirect:/listarAlumnos"; 
 	}
 
+	@GetMapping("/agregarCursoAlumno/{nroDocumento}")
+	public String AlumnosPorCursoId (Model model, @PathVariable int nroDocumento) {
+		List<Curso>curso=serviceCurso.listar();
+		Optional<Alumno>alumno=serviceAlumno.listarId(nroDocumento);
+		model.addAttribute("cursos", curso);
+		model.addAttribute("alumnos",alumno );
+		return "/agregarCursoAlumno"; 
+	}
+	
+	
+
+	@GetMapping("/inscribirAlumno")
+	public String inscribirAlumno (Model model) {
+		List<Curso>curso=serviceCurso.listar();
+		List<Alumno>alumno=serviceAlumno.listar();
+		model.addAttribute("cursos", curso);
+		model.addAttribute("alumnos", alumno);
+		return "inscribirAlumno"; 
+	}
+
+	
 	
 	@GetMapping("/listarProfesores") 
 	public String listarProfesores(Model model) {

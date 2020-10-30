@@ -1,9 +1,13 @@
 package com.stacktrace.model;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -15,6 +19,10 @@ import javax.persistence.GenerationType;
 @Table(name="Profesor")
 public class Profesor {
 	@Id
+	@GeneratedValue (strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name="nroDocumento", length = 50)
 	private int nroDocumento;
 
 
@@ -39,8 +47,8 @@ public class Profesor {
 	@Column(name="telefono", length = 50)
 	private int telefono;
 
-	@Column(name="cursosDictados", length = 100)
-	private ArrayList <String> cursosDictados;
+	@ManyToMany(targetEntity = Profesor.class)
+	private List <Curso> cursos;	
 	
 	
 	@Column(name="capacitaciones", length = 100)
@@ -48,6 +56,11 @@ public class Profesor {
 	
 	@Column(name="titulos", length = 100)
 	private ArrayList <String> titulos;
+	/*
+
+	@OneToMany
+	private List <Curso> cursos;	
+	*/
 	
 	public Profesor(){
 		
@@ -66,13 +79,28 @@ public class Profesor {
 		this.domicilioActual = domicilioActual;
 		this.sexo = sexo;
 		this.telefono = telefono;
-		this.cursosDictados= new ArrayList<String>();
 		this.capacitaciones= new ArrayList<String>();
 		this.titulos= new ArrayList<String>();
 	}
 
 	
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public List<Curso> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
+	}
+
 	public int getNroDocumento() {
 		return nroDocumento;
 	}
@@ -137,21 +165,6 @@ public class Profesor {
 		this.telefono = telefono;
 	}
 
-	public ArrayList<String> getCursosInscriptos() {
-		return cursosDictados;
-	}
-
-	public void setCursosInscriptos(ArrayList<String> cursosInscriptos) {
-		this.cursosDictados = cursosInscriptos;
-	}
-
-	public ArrayList<String> getCursosDictados() {
-		return cursosDictados;
-	}
-
-	public void setCursosDictados(ArrayList<String> cursosDictados) {
-		this.cursosDictados = cursosDictados;
-	}
 
 	public ArrayList<String> getCapacitaciones() {
 		return capacitaciones;

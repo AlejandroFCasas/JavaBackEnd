@@ -40,11 +40,40 @@
 
                     <td><a th:href="@{/editarAlumno/}+${alumno.nroDocumento}" class="btn btn-warning">Editar</button></td>
                     <td><a th:href="@{/eliminarAlumno/}+${alumno.nroDocumento}" class="btn btn-danger">Borrar</button></td>
-                    <td><a th:href="@{/agregarCursoAlumno/}+${alumno.nroDocumento}" class="btn btn-warning">Agregar Curso</button></td> 
+                    <td><a th:href="@{/alumnoPorCurso/}+${alumno.nroDocumento}" class="btn btn-warning">Agregar Curso</button></td> 
                 </tr>
             </tbody>
         </table>
     </div>
+    
+    <div class="container mt-4">
+ 	<br><br>
+        <table class="table">
+            <thead>
+                <tr>
+                	<th>Id Curso</th>
+                    <th>Nombre</th>
+                    <th>Duracion en Horas</th>
+                    <th>Descripcion</th>
+                    <th>Nota de Aprobacion</th>
+                </tr>    
+            </thead>
+            <tbody>
+                <tr th:each ="curso:${cursos}">
+                    <td th:text="${curso.idCurso}"></td>
+                    <td th:text="${curso.nombre}"></td> 
+                    <td th:text="${curso.duracionHoras}"></td>
+                    <td th:text="${curso.descripcion}"></td> 
+                    <td th:text="${curso.notaAprobacion}"></td>
+                    <td><a th:href="@{/editarCurso/}+${curso.idCurso}" class="btn btn-warning">Editar</button></td>
+                    <td><a th:href="@{/eliminarCurso/}+${curso.idCurso}"class="btn btn-danger">Borrar</button></td> 
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    
+    
  	<center><a onclick="history.back()"  class="btn btn-primary btn-lg" role="button" aria-pressed="true">Volver Atrás</a></center><br> <br>
 </body>
 </html>

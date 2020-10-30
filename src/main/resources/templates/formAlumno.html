@@ -49,9 +49,29 @@
 					<label>telefono</label>
 					<input th:field="*{telefono}" type="text" class="form-control"/>
 				</div>
+				<div class="form-group">
+
+			  <div class="form-group col-md-4">
+      <label for="inputState">Curso</label>
+      <select id="${curso.id}" class="form-control">
+        <tr th:each ="curso:${cursos}">
+        <option  th:text="${curso.nombre}"></option>
+      </tr>
+      </select>
+    	</div>
+				<input th:field="*{cursos}" type="text" class="form-control"/>
+				</div>
+			
+
+
+                
+                
+    
+    
 				<div class="card-footer"></div>
 				<input type="submit" value="Guardar" class="btn btn-success">
 			</div>
+
 		</form>
 		</div>
 	</div>

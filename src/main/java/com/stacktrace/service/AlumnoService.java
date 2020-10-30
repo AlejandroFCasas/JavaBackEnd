@@ -1,4 +1,5 @@
 package com.stacktrace.service;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.stacktrace.interfaceService.IAlumnoService;
 import com.stacktrace.model.Alumno;
+import com.stacktrace.model.Curso;
 import com.stacktrace.repo.IAlumno;
 
 @Service
@@ -19,6 +21,11 @@ public class AlumnoService implements IAlumnoService{
 	@Autowired
 	private IAlumno data;
 	
+	@Override
+	public List<Alumno> buscarByCurso(String NombreCurso) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	@Override
 	public Alumno findByNombre(String nombre) {
@@ -32,6 +39,7 @@ public class AlumnoService implements IAlumnoService{
 		return (List<Alumno>)data.findAll();	
 		}
 
+		
 	@Override
 	public Optional<Alumno> listarId(int nroDocumento) {
 		return data.findById(nroDocumento);
@@ -52,4 +60,6 @@ public class AlumnoService implements IAlumnoService{
 		data.deleteById(id);
 		
 	}
+
+
 }
