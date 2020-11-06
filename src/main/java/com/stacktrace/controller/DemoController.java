@@ -97,7 +97,81 @@ public class DemoController {
 		model.addAttribute("alumnos", alumno);
 		return "inscribirAlumno"; 
 	}
+	/*
+	
+	//insertar inscripcion
+	//@ResponseStatus(value = HttpStatus.OK)
+	//@GetMapping("/{usuID}/{fechaIni}/{fechaFin}")
+	@GetMapping("/{idAlumno}/{idCurso}")
+	public String inscribirAlumno (Model model, @PathVariable int idAlumno,@PathVariable int idCurso) {
+		
+		jdbcTemplate.update("INSERT INTO alumnos_curso VALUES (idAlumno, idCURSO,)", idAlumno, idCURSO);
+		//return al index
+	}
+	
+	/*
+	public interface AuthorRepository extends JpaRepository<Author, Long> {
+ 
+    	
+    	
+}
+	
+	
+	final String SELECT_BY_ID_QUERY = "SELECT id, name, age from EMPLOYEE where id = ?";
+	
+	 public Employee findEmployee(int empId) {
+	 
+	 
+    	return this.jdbcTemplate.queryForObject(SELECT_BY_ID_QUERY, new EmployeeMapper(),empId);
+  }
+  
+	
+		
+	//Listar cursos by idAlumno
+	
+	@GetMapping("/listarCursosByidAlumno/{idAlumno}") 
+	public String listarAlumnoByCurso(Model model,@PathVariable int idAlumno) {
+	
+	select * from alumnos_curso where idAlumno = idAlumno;
+	
+	this.jdbcTemplate.queryForObject("SELECT * from cursos where idCurso = ?"idCurso;, new EmployeeMapper(),empId);
+	///*int result = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM EMPLOYEE", Integer.class);
+	//@Query(value = "SELECT * FROM author WHERE first_name = :firstName", nativeQuery = true)
+	//List<Cursos> CursosByIdAlumno(@Param("idAlumno") String idAlumno);
+	
+	
+	model.addAttribute("cursos", curso);
+	return "cursos";
+	}
+	
+	
+	
+	/*int result = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM EMPLOYEE", Integer.class);
+	para el select segun idcurso o idalumno
+	
+	String SELECT_BY_ID = "SELECT COUNT(*) FROM EMPLOYEE WHERE FIRST_NAME = :firstName";
+	
+	
+	//para el index
+	@Override
+public void addViewControllers(ViewControllerRegistry registry) {
+       registry.addViewController("/").setViewName("forward:/index.html");
+}
+	@Controller
+	public class HomeController {
+       @RequestMapping(value = "/")
+       public String index() {
+           return "index"; // no era index
+       }
 
+}
+	*/
+	
+	
+
+	
+	
+	
 	
 	
 	@GetMapping("/listarProfesores") 
