@@ -11,9 +11,7 @@
 </head>
 <body>
  <div class="container mt-4">
- 	<a th:href="@{/newAlumno}"  type="button" class "btn btn-primary">Nuevo</a>
-
- 	
+ 	<a th:href="@{/newAlumno}"  type="button" class "btn btn-primary">Nuevo</a> 	
  	<br><br>
         <table class="table">
             <thead>
@@ -30,7 +28,7 @@
                 </tr>    
             </thead>
             <tbody>
-                <tr th:each ="alumno:${alumnos}"><!-- puede que sea "alumno"-->
+                <tr th:each ="alumno:${alumnos}">
                     <td th:text=${alumno.nroDocumento}>${alumno.nroDocumento}</td> 
                     <td th:text=${alumno.tipoDeDocumento}>${alumno.tipoDeDocumento}</td>
                     <td th:text=${alumno.nombre}>${alumno.nombre}</td> 
@@ -39,14 +37,14 @@
                     <td th:text=${alumno.domicilioActual}>${alumno.domicilioActual}</td>
                     <td th:text=${alumno.sexo}>${alumno.sexo}</td> 
                     <td th:text=${alumno.telefono}>${alumno.telefono}</td>
-                    <td th:text=${alumno.cursosInscriptos}>${alumno.cursosInscriptos}</td>
 
                     <td><a th:href="@{/editarAlumno/}+${alumno.nroDocumento}" class="btn btn-warning">Editar</button></td>
-                    <td><a th:href="@{/eliminarAlumno/}+${alumno.nroDocumento}" class="btn btn-danger">Borrar</button></td> 
+                    <td><a th:href="@{/eliminarAlumno/}+${alumno.nroDocumento}" class="btn btn-danger">Borrar</button></td>
+                    <td><a th:href="@{/agregarCursoAlumno/}+${alumno.nroDocumento}" class="btn btn-warning">Agregar Curso</button></td> 
                 </tr>
             </tbody>
         </table>
     </div>
-
+ 	<center><a onclick="history.back()"  class="btn btn-primary btn-lg" role="button" aria-pressed="true">Volver Atrás</a></center><br> <br>
 </body>
 </html>

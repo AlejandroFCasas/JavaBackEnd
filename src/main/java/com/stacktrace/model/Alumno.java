@@ -1,16 +1,37 @@
 package com.stacktrace.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 @Entity
 @Table(name="Alumno")
-public class Alumno {
+public class Alumno implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
+	@Column(name="nroDocumento", length = 50)
 	private int nroDocumento;
 
 	@Column(name="tipoDeDocumento", length = 50)
@@ -33,17 +54,26 @@ public class Alumno {
 	
 	@Column(name="telefono", length = 50)
 	private int telefono;
-	
-	@Column(name="cursosInscriptos", length = 100)
-	private ArrayList <Curso> cursosInscriptos;
-	
 
-	public Alumno() {
+	
+	@ManyToMany(cascade=CascadeType.ALL)
+	private List <Curso> cursos;	
+	
+	
+	public void addCurso(Optional<Curso> curso) {
+		if (this.cursos == null) {
+			this.cursos=new ArrayList<>();
+		}
+		Curso temp = new Curso(curso.get().getIdCurso(),curso.get().getNombre(),curso.get().getDuracionHoras(),curso.get().getDescripcion(),curso.get().getNotaAprobacion());
+		//public Curso (int idCurso, String nombreCurso, int duracionHoras, String descripcion, int notaAprobacion) {
+		this.cursos.add(temp);
 		
 	}
-	public Alumno(String nombre) {
-		this.nombre = nombre;
+	
+	public Alumno() {
+		this.cursos=new ArrayList<>();
 	}
+
 
 	public Alumno(int nroDocumento, String tipoDeDocumento,String nombre,
 			String apellido,String fechaNacimiento, String domicilioActual,
@@ -57,10 +87,8 @@ public class Alumno {
 		this.domicilioActual = domicilioActual;
 		this.sexo = "F";
 		this.telefono = telefono;
-		this.cursosInscriptos= new ArrayList<Curso>();
-
+		this.cursos=new ArrayList<>();
 	}
-
 
 	public int getNroDocumento() {
 		return nroDocumento;
@@ -142,14 +170,23 @@ public class Alumno {
 	}
 
 
-	public ArrayList<Curso> getCursosInscriptos() {
-		return cursosInscriptos;
+	public List<Curso> getCursos() {
+		return cursos;
 	}
 
 
-	public void setCursosInscriptos(ArrayList<Curso> cursosInscriptos) {
-		this.cursosInscriptos = cursosInscriptos;
+	public void setCursos(List<Curso> cursos) {
+		this.cursos = cursos;
 	}
+
+	
+	public void agregarCurso(Curso curso) {
+		this.cursos.add(curso);
+	}
+
+
+
+
 
 
 	

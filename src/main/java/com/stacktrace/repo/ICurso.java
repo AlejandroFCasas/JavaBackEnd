@@ -9,3 +9,4 @@ import com.stacktrace.model.Curso;
 public interface ICurso extends CrudRepository <Curso, Integer>{ 
 
 }
+

@@ -24,7 +24,7 @@ import com.stacktrace.model.Profesor;
 @RequestMapping
 public class DemoController {
 
-	
+
 	//inyeccion a la parte del DAO
 	@Autowired
 	private IAlumnoService serviceAlumno; 
@@ -36,6 +36,8 @@ public class DemoController {
 	@Autowired
 	private ICursoService serviceCurso; 
 	
+
+	
 	
 	@GetMapping("/listarAlumnos") 
 	public String listarAlumnos(Model model) {
@@ -44,17 +46,51 @@ public class DemoController {
 		return "alumnos";
 	}
 	
+	
 	@GetMapping("/newAlumno")
 	public String agregarAlumno(Model model) {
 		model.addAttribute("alumno", new Alumno());
+		List<Curso>curso=serviceCurso.listar();
+		model.addAttribute("cursos", curso);
 		return "formAlumno";
 	}
+	
+	
 	@PostMapping("/saveAlumno")
 	public String save ( Alumno a, Model model) {
 		serviceAlumno.save(a);
 		return "redirect:/listarAlumnos";
 	}
 
+	
+	//inicio test
+	
+	
+	@GetMapping("/inscribirAlumno/{nroDocumento}")
+	public String inscribirAlumno(@PathVariable int nroDocumento, Model model) {
+		Optional <Alumno> alumno=serviceAlumno.listarId(nroDocumento);
+		model.addAttribute("alumno", alumno);
+		return "inscribirAlumno"; 
+	}
+	
+	
+	
+	@PostMapping("/guardarInscripcion/{idCurso}")
+	public String guardarInscripcion( @PathVariable int idCurso, Alumno a, Model model) {
+		Optional<Curso> curso=serviceCurso.listarId(idCurso);
+		
+		a.addCurso(curso);
+		
+		serviceAlumno.save(a);
+		return "redirect:/listarAlumnos";
+	}
+	
+	
+	
+	
+	//fin test
+	
+	
 	@GetMapping("/editarAlumno/{nroDocumento}")
 	public String editarAlumno(@PathVariable int nroDocumento, Model model) {
 		Optional <Alumno> alumno=serviceAlumno.listarId(nroDocumento);
@@ -62,12 +98,60 @@ public class DemoController {
 		return "formAlumno";
 	}
 	
+	
+	
+	
 	@GetMapping("/eliminarAlumno/{nroDocumento}")
 	public String deleteAlumno (Model model, @PathVariable int nroDocumento) {
 		serviceAlumno.delete(nroDocumento);
 		return "redirect:/listarAlumnos"; 
 	}
 
+	@GetMapping("/agregarCursoAlumno/{nroDocumento}")
+	public String AlumnosPorCursoId (Model model, @PathVariable int nroDocumento) {
+		List<Curso>curso=serviceCurso.listar();
+		Optional<Alumno>alumno=serviceAlumno.listarId(nroDocumento);
+		model.addAttribute("cursos", curso);
+		model.addAttribute("alumnos",alumno );
+		return "/agregarCursoAlumno"; 
+	}
+	
+	
+
+	@GetMapping("/inscribirAlumno")
+	public String inscribirAlumno2 (Model model) {
+		List<Curso>curso=serviceCurso.listar();
+		List<Alumno>alumno=serviceAlumno.listar();
+		model.addAttribute("cursos", curso);
+		model.addAttribute("alumnos", alumno);
+		return "inscribirAlumno"; 
+	}
+
+	@PostMapping	("/inscripcion/{nroDocumento}/{idCurso}") 
+	//http://localhost:9898/inscripcion/123123123/1
+	public String inscribirAlumno (Model model, @PathVariable Integer nroDocumento,@PathVariable Integer idCurso) {
+		
+		Optional<Curso> curso=serviceCurso.listarId(idCurso);
+		Optional<Alumno> alumno=serviceAlumno.listarId(nroDocumento);
+		
+		alumno.get().addCurso(curso);
+		model.addAttribute("alumnos", alumno);
+		
+		serviceAlumno.save(alumno.get());
+		return "redirect:/listarAlumnos";
+	}
+	@GetMapping("/inscripcion/{idAlumno}")
+	public String inscribirAlumno2 (Model model, @PathVariable int idAlumno) {
+		
+		//jdbcTemplate.update("INSERT INTO alumnos_curso VALUES (idAlumno, idCURSO,)", idAlumno, idCURSO);
+		//return al index
+		
+		List<Alumno>alumno=serviceAlumno.listar();
+		model.addAttribute("alumnos", alumno);
+		return "alumnos";
+	}
+	
+	
 	
 	@GetMapping("/listarProfesores") 
 	public String listarProfesores(Model model) {
